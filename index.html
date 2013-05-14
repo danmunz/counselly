@@ -15,81 +15,78 @@
   <link rel="stylesheet" href="chosen/chosen.css">
 
   <script src="js/libs/modernizr-2.5.3.min.js"></script>
+  
+  <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,700' rel='stylesheet' type='text/css'>
+  
 </head>
 <body>
   <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
   <header>
 <h1>Counsel.ly</h1>
-<h2>Quickly find a HUD-certified housing counseling agency</h2>
-<p>Data provided by the <a href="http://data.hud.gov/housing_counseling.html">HUD Housing Counselor Web Service API</a></p>
-
+<h2>Quickly find a HUD-certified housing counseling agency</h2><br/>
+<span class="hudcredit">+ Data provided by the <a href="http://data.hud.gov/housing_counseling.html">HUD Housing Counselor Web Service API</a></span>
   </header>
-  <div id="main" role="main">
 
-<div id="locate">
- <hr/>
-<h1>Step 1: Where are you?</h1>
-<p>You can <strong>enter a physical address</strong> or <strong>use your current location</strong>.</p>
 
-<h2>Enter a physical address</h2>
-<form id="geocoder">
-<input type="text" id="geocoder-input" class="geocodifyInput" autocomplete="off">
-</form>
-</div>
+<div id="main" role="main">
 
-<div id="listings">
-<hr/>
-<h1>Step 2: How can we help?</h1>
-<p>We successfully located you! Now, tell us how far we should look for a counseling agency.</p>
-
-	<h2>Distance</h2>
-	<p>Only show me counselors within <input type="text" id="distance" name="distance" placeholder="mi" maxlength="2" size="3" value="30"></input> miles of me.</p>
-	
-	<button id="go" value="submit">Looks right. Let's go!</button>
-	
-</div>
-
-<div id="results">
-<hr/>
-<h1>Step 3: Find your counselor!</h1>
-<p>Here are the HUD-certified counselors within range. Choose the one that's best for you</p>
-
-	<div id="controls">
-	<select data-placeholder="I'm looking for a counselor who knows about…" class="chzn-select-svc" multiple>
-		<option value=""></option> 
-		<option value="DFC">DFC</option> 
-		<option value="FBC">FBC</option> 
-		<option value="FHW">FHW</option> 
-		<option value="HIC">HIC</option> 
-		<option value="HMC">HMC</option> 
-		<option value="NDW">NDW</option> 
-		<option value="PPC">PPC</option> 
-		<option value="PPW">PPW</option> 
-		<option value="RHC">RHC</option> 
-	</select>
-	<br/>
-	<select data-placeholder="I'm looking for a counselor who speaks…" class="chzn-select-lang" multiple>
-		<option value=""></option> 
-		<option value="ENG">English</option> 
-		<option value="SPA">Español</option> 
-		<option value="ASL">American Sign Language</option> 
-	</select>
+	<div id="locate">
+	<h1>Where are you?</h1>
+	<form id="geocoder">
+	<input type="text" id="geocoder-input" class="geocodifyInput" autocomplete="off">
+	</form>	
+	<p>You can enter a physical address above, or <a onclick="alert('Coming soon!')">use your current location</a>.</p>
 	</div>
 	
-	<hr/>
-	<h2 class="madlib"></h2>
-	
-	<ol id="listing">
-	
-	</ol>
-	
-	
+	<div id="findfilter">
+
+	<div id="map"></div>
+
+		<div id="leftpanel">
+		
+			<div id="listings">
+			<h1>Step 2: How can we help?</h1>
+			<p>We successfully located you! Now, tell us how far we should look for a counseling agency.</p>
+			<h2>Distance</h2>
+			<p>Only show me counselors within <input type="text" id="distance" name="distance" placeholder="mi" maxlength="2" size="3" value="30"></input> miles of me.</p>
+			<span id="statusmsg"></span>
+			<button id="go" value="submit">Looks right. Let's go!</button>
+			</div>
+
+			<div id="results">
+			<h1>Step 3: Find your counselor!</h1>
+			<p>Here are the HUD-certified counselors within range. Choose the one that's best for you</p>
+				<div id="controls">
+				<select data-placeholder="I'm looking for a counselor who knows about…" class="chzn-select-svc" multiple>
+				<option value=""></option> 
+				<option value="DFC">DFC</option> 
+				<option value="FBC">FBC</option> 
+				<option value="FHW">FHW</option> 
+				<option value="HIC">HIC</option> 
+				<option value="HMC">HMC</option> 
+				<option value="NDW">NDW</option> 
+				<option value="PPC">PPC</option> 
+				<option value="PPW">PPW</option> 
+				<option value="RHC">RHC</option> 
+				</select>
+				<br/>
+				<select data-placeholder="I'm looking for a counselor who speaks…" class="chzn-select-lang" multiple>
+				<option value=""></option> 
+				<option value="ENG">English</option> 
+				<option value="SPA">Español</option> 
+				<option value="ASL">American Sign Language</option> 
+				</select>
+				</div>
+			<h2 class="madlib"></h2>
+			<ol id="listing">
+			</ol>
+			</div>
+
+		</div>
+
+	</div>
 
 </div>
-
-  </div>
-  
-  <div id="map"></div>
 
   
   <footer>
@@ -119,6 +116,7 @@
 
 <script type="text/javascript">
 	$(document).ready(function () {
+		
 		$("#geocoder").geocodify({
 			onSelect: function (result) {
 				GetLatLongFromAddr(result.formatted_address);
@@ -132,13 +130,11 @@
 		var myaddress = "";
 		var circleonce = false;
 		results = [];
-		map = new GMaps({ //Create a new map
-			div: '#map',
-			zoom: 3,
-			lat: 39.50,
-			lng: -98.35
-		});
+		
 		$('#distance').keyup(function () { //Whenever someone types in a new distance value
+			
+			results = []; //Clear the results array once more
+			
 			if (circleonce) { //check if there's been a circle drawn already
 				circle.setMap(null); //if so, erase it!
 			}
@@ -154,7 +150,23 @@
 				radius: mapradius
 			});
 			circleonce = true;
+			
+			$.each(hudagencies.features, function (i, agency) {
+				var distance = calcDistance(currentpos.getPosition().lat(), currentpos.getPosition().lng(), parseFloat(agency.agc_ADDR_LATITUDE), parseFloat(agency.agc_ADDR_LONGITUDE))
+			
+				if (distance <= mapradius/1609.34){results.push(agency);} //Add any centers within range to 'results'
+				
+			});
+						
+			if (results.length == 0){
+			$('#statusmsg').html('<h2>Sorry, there are no counseling centers within '+ mapradius/1609.34 + ' miles of this location. Increase your range and try again.')
+			}else{
+			$('#statusmsg').html('<h2>There are ' + results.length + ' counseling centers within '+ mapradius/1609.34 + ' miles of this location!')					}
+		
+			return results;
+			
 		});
+		
 		$(".chzn-select-svc,.chzn-select-lang").chosen().change(function () {
 			var services = $(".chzn-select-svc").val();
 			var languages = $(".chzn-select-lang").val();
@@ -162,7 +174,7 @@
 		});
 
 
-
+/*
 		function listUpdater(svcs, langs) {
 			var results = [];
 			
@@ -204,16 +216,16 @@
 					$('#listing').append("<li id='" + result.agcid + "' class='result' data-svcs='" + result.services.replace(/\,/g, ' ') + "' data-langs='" + result.languages.replace(/\,/g, ' ') + "'><strong>" + result.nme + "</strong> <em>about " + calcDistance(38.80151130000001, -77.0490107, parseFloat(result.agc_ADDR_LATITUDE), parseFloat(result.agc_ADDR_LONGITUDE)) + " miles away<br/>" + result.services + " | " + result.languages + "</li>");
 				});
 			}else{
-				$('#listing').html('<h2>Sorry, no results match. Adjust your filters and try again.');	
+				$('#listing').html('<h2>Sorry, no results match. Adjust your filters and try again.</h2>');	
 			}
 		
 		}
 		
+*/
 		
 		$("#go").click(function () { //Assign entered fields to address vars
-			$('#listings').slideToggle(); //hide step 2
-			$('#results').slideToggle(); //show step 3
 			$.each(hudagencies.features, function (i, agency) {
+			
 				$('#listing').append("<li id='" + agency.agcid + "' class='result' data-svcs='" + agency.services.replace(/\,/g, ' ') + "' data-langs='" + agency.languages.replace(/\,/g, ' ') + "'><strong>" + agency.nme + "</strong> <em>about " + calcDistance(38.80151130000001, -77.0490107, parseFloat(agency.agc_ADDR_LATITUDE), parseFloat(agency.agc_ADDR_LONGITUDE)) + " miles away<br/>" + agency.services + " | " + agency.languages + "</li>");
 				map.addMarker({ //drop a pin
 					lat: agency.agc_ADDR_LATITUDE,
@@ -239,6 +251,17 @@
 			address: myaddress,
 			callback: function (results, status) {
 				if (status == 'OK') {
+
+					$('#locate').slideToggle(); //hide step 1
+					$('#findfilter').slideToggle(); //show step 2
+
+					map = new GMaps({
+						div: '#map',
+						zoom: 3,
+						lat: 39.50,
+						lng: -98.35
+					});
+
 					var latlng = results[0].geometry.location;
 					map.setCenter(latlng.lat(), latlng.lng()); //re-center the map
 					map.setZoom(10); //zoom in
@@ -247,8 +270,6 @@
 						lng: latlng.lng(),
 						animation: google.maps.Animation.DROP
 					});
-					$('#locate').slideToggle(); //hide step 1
-					$('#listings').slideToggle(); //show step 2
 				} else {
 					alert('Something went wrong. Try again.');
 				}

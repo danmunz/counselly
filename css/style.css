@@ -12,8 +12,8 @@ body { margin: 0; font-size: 1em; line-height: 1.4; }
 ::-moz-selection { background: #fe57a1; color: #fff; text-shadow: none; }
 ::selection { background: #fe57a1; color: #fff; text-shadow: none; }
 
-a { color: #00e; }
-a:visited { color: #551a8b; }
+a { color: #2262CC; }
+a:visited { color: #2262CC; }
 a:hover { color: #06e; }
 a:focus { outline: thin dotted; }
 a:hover, a:active { outline: 0; }
@@ -65,35 +65,51 @@ td { vertical-align: top; }
 .chromeframe { margin: 0.2em 0; background: #ccc; color: black; padding: 0.2em 0; }
 
 body{
-background: #eee;
-font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-
+font-family: "Roboto Slab";
+background-color: #e4e1dd;
 }
 
 header{
-background: #e0e0e0;
-font-size: .5em;
 width: 100%;
+background: #90cf91;
+font-size: 0.85em;
+text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
+padding: 10px;
+box-shadow: 0px 2px 5px #666;
+}
+
+header > *{
+margin: 0;
+display: inline-block;
+vertical-align: bottom;
+}
+
+header h2{
+margin-left: 5px;
 }
 
 #main{
-background: white;
-width: 597px;
-height: 500px;
-display: inline-block;
-vertical-align: top;
-overflow: scroll;
-border: solid 1px #ddd;
-padding: 10px 0;
+text-align: center;
+}
+
+#main #geocoder{
+width: 100%;
+}
+
+#main #geocoder #geocoder-input{
+padding: 10px;
+width: 80%;
+text-align: center;
+font-family: inherit;
 }
 
 #map{
-width: 660px;
-height: 500px;
+height: 500px !important;
+width: 500px !important;
 display: inline-block;
 }
 
-#listings, #results{
+#findfilter{
 display: none;
 }
 
@@ -105,11 +121,10 @@ padding: 0 2px;
 /*Geocodify CSS, taken from https://raw.github.com/datadesk/jquery-geocodify/master/jquery.geocodify.css*/
 
 .geocodifyDropdown {
-    position: absolute;
     display:block;
     z-index: 9003;
-    width: 325px;
-    margin: 0 !important;
+    width: 80%;
+    margin: 0 auto !important;
     padding: 5px 0 !important;
     background-color: white;
     border-top-color: #D9D9D9;
@@ -131,7 +146,7 @@ padding: 0 2px;
     margin: 0;
     list-style-type: none;
     text-align: left;
-    font-size: 100%;
+    font-size: 80%;
     font-family: inherit;
 }
 
