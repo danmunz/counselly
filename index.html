@@ -1,0 +1,304 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title></title>
+  <meta name="description" content="">
+
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="chosen/chosen.css">
+
+  <script src="js/libs/modernizr-2.5.3.min.js"></script>
+</head>
+<body>
+  <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+  <header>
+<h1>Counsel.ly</h1>
+<h2>Quickly find a HUD-certified housing counseling agency</h2>
+<p>Data provided by the <a href="http://data.hud.gov/housing_counseling.html">HUD Housing Counselor Web Service API</a></p>
+
+  </header>
+  <div id="main" role="main">
+
+<div id="locate">
+ <hr/>
+<h1>Step 1: Where are you?</h1>
+<p>You can <strong>enter a physical address</strong> or <strong>use your current location</strong>.</p>
+
+<h2>Enter an address</h2>
+<form id="geocoder">
+<input type="text" id="geocoder-input" class="geocodifyInput" autocomplete="off">
+</form>
+</div>
+
+<div id="listings">
+<hr/>
+<h1>Step 2: How can we help?</h1>
+<p>We successfully located you! Now, tell us how far we should look for a counseling agency.</p>
+
+	<h2>Distance</h2>
+	<p>Only show me counselors within <input type="text" id="distance" name="distance" placeholder="mi" maxlength="2" size="3" value="30"></input> miles of me.</p>
+	
+	<button id="go" value="submit">Looks right. Let's go!</button>
+	
+</div>
+
+<div id="results">
+<hr/>
+<h1>Step 3: Find your counselor!</h1>
+<p>Here are the HUD-certified counselors within range. Choose the one that's best for you</p>
+
+	<div id="controls">
+	<select data-placeholder="I'm looking for a counselor who knows about…" class="chzn-select-svc" multiple>
+		<option value=""></option> 
+		<option value="DFC">DFC</option> 
+		<option value="FBC">FBC</option> 
+		<option value="FHW">FHW</option> 
+		<option value="HIC">HIC</option> 
+		<option value="HMC">HMC</option> 
+		<option value="NDW">NDW</option> 
+		<option value="PPC">PPC</option> 
+		<option value="PPW">PPW</option> 
+		<option value="RHC">RHC</option> 
+	</select>
+	<br/>
+	<select data-placeholder="I'm looking for a counselor who speaks…" class="chzn-select-lang" multiple>
+		<option value=""></option> 
+		<option value="ENG">English</option> 
+		<option value="SPA">Español</option> 
+		<option value="ASL">American Sign Language</option> 
+	</select>
+	</div>
+	
+	<hr/>
+	<h2 class="madlib"></h2>
+	
+	<ol id="listing">
+	
+	</ol>
+	
+	
+
+</div>
+
+  </div>
+  
+  <div id="map"></div>
+
+  
+  <footer>
+
+  </footer>
+
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+  <script src="js/plugins.js"></script>
+  <script src="js/script.js"></script>
+  
+  <!--Fancy form fields-->
+  <script src="chosen/chosen.jquery.js"></script>
+  
+  <!--For gmaps to work-->
+  <script src="https://maps.googleapis.com/maps/api/js?libraries=geometry&sensor=true"></script>
+  <script src="https://raw.github.com/HPNeo/gmaps/master/gmaps.js"></script>
+
+<!--For address geocoding-->
+<script type="text/javascript" src="https://raw.github.com/datadesk/jquery-geocodify/master/jquery.geocodify.js"></script>
+
+  <script src="agencies.js"></script>
+
+<script type="text/javascript">
+	$(document).ready(function () {
+		$("#geocoder").geocodify({
+			onSelect: function (result) {
+				GetLatLongFromAddr(result.formatted_address);
+			},
+			regionBias: "US",
+			initialText: "Begin typing here to find an address or zip code."
+		});
+		$(".chzn-select-svc").chosen();
+		$(".chzn-select-lang").chosen();
+		//Initial distance variables
+		var myaddress = "";
+		var circleonce = false;
+		results = [];
+		map = new GMaps({ //Create a new map
+			div: '#map',
+			zoom: 3,
+			lat: 39.50,
+			lng: -98.35
+		});
+		$('#distance').keyup(function () { //Whenever someone types in a new distance value
+			if (circleonce) { //check if there's been a circle drawn already
+				circle.setMap(null); //if so, erase it!
+			}
+			var mapradius = Number($('#distance').val()) * 1609.34; //Turn the user's entered value into meters, for gMaps			
+			zoomscaler(Number($('#distance').val())); //Re-zoom the map to fit it, roughly
+			map.setCenter(currentpos.getPosition().lat(), currentpos.getPosition().lng());
+			circle = map.drawCircle({ //Add a transparent circle representing their desired radius
+				lat: map.getCenter().lat(),
+				lng: map.getCenter().lng(),
+				strokeWeight: 0,
+				fillColor: '#BBD8E9',
+				fillOpacity: 0.5,
+				radius: mapradius
+			});
+			circleonce = true;
+		});
+		$(".chzn-select-svc,.chzn-select-lang").chosen().change(function () {
+			var services = $(".chzn-select-svc").val();
+			var languages = $(".chzn-select-lang").val();
+			listUpdater(services, languages);
+		});
+
+
+
+		function listUpdater(svcs, langs) {
+			var results = [];
+			
+			if (svcs == null) {
+				svcs = ["all services"];
+			}
+			
+			if (langs == null) {
+				langs = ["any language"];
+			}
+			
+			$('.madlib').html('Looking for counselors who know about <span class="services">' + svcs.join(' or ') + '</span> and speak <span class="languages">' + langs.join(' or ') + '</span>.');
+
+			$.each(hudagencies.features, function (i, agency) { //Get the agencies
+				var servicematch = false;
+				var languagematch = false;
+				
+					$.each(svcs, function (j, svc) { //Check if it matches the services selected
+						if (agency.services.indexOf(svc) != -1) {
+							servicematch = true;
+						}
+					});
+				
+					$.each(langs, function (k, lang) { //Check if it matches the services selected
+						if (agency.languages.indexOf(lang) != -1) {
+							languagematch = true;
+						}
+					});
+				
+				if (servicematch == true && languagematch == true) {
+					results.push(agency);
+				}
+			});
+			
+			$('#listing').empty();
+
+			if (results.length != 0){
+				$.each(results, function (l, result) {
+					$('#listing').append("<li id='" + result.agcid + "' class='result' data-svcs='" + result.services.replace(/\,/g, ' ') + "' data-langs='" + result.languages.replace(/\,/g, ' ') + "'><strong>" + result.nme + "</strong> <em>about " + calcDistance(38.80151130000001, -77.0490107, parseFloat(result.agc_ADDR_LATITUDE), parseFloat(result.agc_ADDR_LONGITUDE)) + " miles away<br/>" + result.services + " | " + result.languages + "</li>");
+				});
+			}else{
+				$('#listing').html('<h2>Sorry, no results match. Adjust your filters and try again.');	
+			}
+		
+		}
+		
+		
+		$("#go").click(function () { //Assign entered fields to address vars
+			$('#listings').slideToggle(); //hide step 2
+			$('#results').slideToggle(); //show step 3
+			$.each(hudagencies.features, function (i, agency) {
+				$('#listing').append("<li id='" + agency.agcid + "' class='result' data-svcs='" + agency.services.replace(/\,/g, ' ') + "' data-langs='" + agency.languages.replace(/\,/g, ' ') + "'><strong>" + agency.nme + "</strong> <em>about " + calcDistance(38.80151130000001, -77.0490107, parseFloat(agency.agc_ADDR_LATITUDE), parseFloat(agency.agc_ADDR_LONGITUDE)) + " miles away<br/>" + agency.services + " | " + agency.languages + "</li>");
+				map.addMarker({ //drop a pin
+					lat: agency.agc_ADDR_LATITUDE,
+					lng: agency.agc_ADDR_LONGITUDE,
+					animation: google.maps.Animation.DROP,
+					title: agency.nme,
+					infoWindow: {
+						content: "<p><strong>" + agency.nme + "</strong></p>"
+					},
+					mouseover: function (e) {
+						$('#' + agency.agcid).css('background', 'beige');
+					},
+					mouseout: function (e) {
+						$('#' + agency.agcid).css('background', 'transparent');
+					}
+				});
+			});
+		});
+	});
+
+	function GetLatLongFromAddr(myaddress) { //Get lat/long from entered address
+		GMaps.geocode({
+			address: myaddress,
+			callback: function (results, status) {
+				if (status == 'OK') {
+					var latlng = results[0].geometry.location;
+					map.setCenter(latlng.lat(), latlng.lng()); //re-center the map
+					map.setZoom(10); //zoom in
+					currentpos = map.addMarker({ //drop a pin
+						lat: latlng.lat(),
+						lng: latlng.lng(),
+						animation: google.maps.Animation.DROP
+					});
+					$('#locate').slideToggle(); //hide step 1
+					$('#listings').slideToggle(); //show step 2
+				} else {
+					alert('Something went wrong. Try again.');
+				}
+			}
+		});
+	}
+
+	function calcDistance(fromLat, fromLng, toLat, toLng) { //Calculate distance between two lat/long pairs in miles, and round it
+		return Math.round(google.maps.geometry.spherical.computeDistanceBetween(
+			new google.maps.LatLng(fromLat, fromLng), new google.maps.LatLng(toLat, toLng)) * 0.000621371);
+	}
+
+	function zoomscaler(number) { //Get lat/long from entered address
+		if (number >= 600 && number <= 1200) {
+			map.setZoom(4);
+		}
+		if (number >= 300 && number <= 600) {
+			map.setZoom(5);
+		}
+		if (number >= 150 && number <= 300) {
+			map.setZoom(6);
+		}
+		if (number >= 75 && number <= 150) {
+			map.setZoom(7);
+		}
+		if (number >= 38 && number <= 75) {
+			map.setZoom(8);
+		}
+		if (number >= 16 && number <= 38) {
+			map.setZoom(9);
+		}
+		if (number >= 8 && number <= 16) {
+			map.setZoom(10);
+		}
+		if (number >= 4 && number <= 8) {
+			map.setZoom(11);
+		}
+		if (number >= 2 && number <= 4) {
+			map.setZoom(12);
+		}
+		if (number >= 1 && number <= 2) {
+			map.setZoom(13);
+		}
+		if (number >= 0 && number <= 1) {
+			map.setZoom(14);
+		}
+	}
+</script>
+
+  <script>
+    var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+    g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+    s.parentNode.insertBefore(g,s)}(document,'script'));
+  </script>
+</body>
+</html>
