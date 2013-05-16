@@ -11,8 +11,8 @@
 
 
   <meta name="viewport" content="width=device-width">
-  <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="chosen/chosen.css">
+  <link rel="stylesheet" href="css/style.css">
 
   <script src="js/libs/modernizr-2.5.3.min.js"></script>
   
@@ -21,12 +21,12 @@
 </head>
 <body>
   <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
-  <header>
-<h1>Counsel.ly</h1>
-<h2>Quickly find a HUD-certified housing counseling agency</h2><br/>
-<span class="hudcredit">+ Data provided by the <a href="http://data.hud.gov/housing_counseling.html">HUD Housing Counselor Web Service API</a></span>
-  </header>
 
+	<header>
+		<h1>Counsel.ly</h1>
+		<h2>Quickly find a HUD-certified housing counseling agency</h2><br/>
+		<span class="hudcredit">+ Data provided by the <a href="http://data.hud.gov/housing_counseling.html">HUD Housing Counselor Web Service API</a></span>
+	</header>
 
 <div id="main" role="main">
 
@@ -40,24 +40,17 @@
 	
 	<div id="findfilter">
 
-	<div id="map"></div>
+	<h2 id="madlib">Adjust the filters below to find housing counselors.</h2>
 
 		<div id="leftpanel">
 		
-			<div id="listings">
-			<h1>Step 2: How can we help?</h1>
-			<p>We successfully located you! Now, tell us how far we should look for a counseling agency.</p>
+			<div id="filters">
 			<h2>Distance</h2>
-			<p>Only show me counselors within <input type="text" id="distance" name="distance" placeholder="mi" maxlength="2" size="3" value="30"></input> miles of me.</p>
-			<span id="statusmsg"></span>
-			<button id="go" value="submit">Looks right. Let's go!</button>
-			</div>
+			<p>Only show me counselors within <input type="text" id="distance" name="distance" placeholder="mi" maxlength="2" size="3"></input> mile(s) of me.</p>
 
-			<div id="results">
-			<h1>Step 3: Find your counselor!</h1>
-			<p>Here are the HUD-certified counselors within range. Choose the one that's best for you</p>
-				<div id="controls">
-				<select data-placeholder="I'm looking for a counselor who knows about…" class="chzn-select-svc" multiple>
+			<h2>Services</h2>
+			<p>Only show me agencies who provide counseling on:</p>
+				<select data-placeholder="begin typing here" class="chzn-select-svc" multiple>
 				<option value=""></option> 
 				<option value="DFC">DFC</option> 
 				<option value="FBC">FBC</option> 
@@ -69,21 +62,27 @@
 				<option value="PPW">PPW</option> 
 				<option value="RHC">RHC</option> 
 				</select>
-				<br/>
+				
+			<h2>Languages</h2>
+			<p>Only show me counselors who speak:</p>
 				<select data-placeholder="I'm looking for a counselor who speaks…" class="chzn-select-lang" multiple>
 				<option value=""></option> 
 				<option value="ENG">English</option> 
 				<option value="SPA">Español</option> 
 				<option value="ASL">American Sign Language</option> 
 				</select>
-				</div>
-			<h2 class="madlib"></h2>
-			<ol id="listing">
-			</ol>
+				
+				<ol id="listing">
+				</ol>
+
 			</div>
 
 		</div>
-
+		
+		<div id="rightpanel">
+			<div id="map"></div>
+		</div>
+		
 	</div>
 
 </div>
@@ -117,6 +116,7 @@
 <script type="text/javascript">
 	$(document).ready(function () {
 		
+		//Initialize Geocoder and Chosen forms
 		$("#geocoder").geocodify({
 			onSelect: function (result) {
 				GetLatLongFromAddr(result.formatted_address);
@@ -126,114 +126,135 @@
 		});
 		$(".chzn-select-svc").chosen();
 		$(".chzn-select-lang").chosen();
-		//Initial distance variables
+		
+		//Initialize some global variables
 		var myaddress = "";
 		var circleonce = false;
 		results = [];
 		
-		$('#distance').keyup(function () { //Whenever someone types in a new distance value
+		//Catch changes in distance
+		$('#distance').keyup(function () {
+			listUpdater();
+			mapUpdater();
+		});
+		
+		//Catch chosen selections
+		$(".chzn-select-svc,.chzn-select-lang").chosen().change(function () {
+			listUpdater();
+			mapUpdater();
+		});
+
+		//UPDATE THE ARRAY 'RESULTS' WITH RESULTS THAT MATCH THE FILTERS
+		function listUpdater() {
+
+			//Grab form inputs and store them as values			
+			var mapradius = Number($('#distance').val()) * 1609.34;
+			var svcs = $(".chzn-select-svc").val();
+			var langs = $(".chzn-select-lang").val();
+						
+			//Clear the results array
+			results = []; 
 			
-			results = []; //Clear the results array once more
-			
-			if (circleonce) { //check if there's been a circle drawn already
-				circle.setMap(null); //if so, erase it!
+			//Clear the map circle, if there is one already
+			if (circleonce) {
+				circle.setMap(null);
 			}
-			var mapradius = Number($('#distance').val()) * 1609.34; //Turn the user's entered value into meters, for gMaps			
+			
 			zoomscaler(Number($('#distance').val())); //Re-zoom the map to fit it, roughly
-			map.setCenter(currentpos.getPosition().lat(), currentpos.getPosition().lng());
-			circle = map.drawCircle({ //Add a transparent circle representing their desired radius
+			
+			map.setCenter(currentpos.getPosition().lat(), currentpos.getPosition().lng()); //Re-center the map around the original address marker
+			circle = map.drawCircle({ //Draw a new circle representing the entered radius
 				lat: map.getCenter().lat(),
 				lng: map.getCenter().lng(),
 				strokeWeight: 0,
-				fillColor: '#BBD8E9',
-				fillOpacity: 0.5,
+				fillColor: '#9aaeaf',
+				fillOpacity: 0.4,
 				radius: mapradius
 			});
-			circleonce = true;
-			
-			$.each(hudagencies.features, function (i, agency) {
-				var distance = calcDistance(currentpos.getPosition().lat(), currentpos.getPosition().lng(), parseFloat(agency.agc_ADDR_LATITUDE), parseFloat(agency.agc_ADDR_LONGITUDE))
-			
-				if (distance <= mapradius/1609.34){results.push(agency);} //Add any centers within range to 'results'
-				
-			});
+			circleonce = true; //Indicate that there's an existing circle now
 						
-			if (results.length == 0){
-			$('#statusmsg').html('<h2>Sorry, there are no counseling centers within '+ mapradius/1609.34 + ' miles of this location. Increase your range and try again.')
+			//Add eligible agencies to the results array
+			$.each(hudagencies.features, function (i, agency) {
+				
+				//Calculate the distance each one is from the original address marker
+				var distance = calcDistance(currentpos.getPosition().lat(), currentpos.getPosition().lng(), parseFloat(agency.agc_ADDR_LATITUDE), parseFloat(agency.agc_ADDR_LONGITUDE));
+				
+				//Add any within-range centers to the 'results' array
+				if (distance <= mapradius/1609.34){
+				results.push(agency);
+				} //Add any centers within range to 'results'
+				
+				return results;
+					
+			});
+			
+			console.log("After filtering just for distance there are " + results.length + " results.");
+			
+			if (svcs !== null){
+				$.each(svcs, function (j, svc) { //Check if it matches the services selected
+					results = _.filter(results, function (agency) {return agency.services.indexOf(svc) !== -1;});
+				});
 			}else{
-			$('#statusmsg').html('<h2>There are ' + results.length + ' counseling centers within '+ mapradius/1609.34 + ' miles of this location!')					}
-		
-			return results;
-			
-		});
-		
-		$(".chzn-select-svc,.chzn-select-lang").chosen().change(function () {
-			var services = $(".chzn-select-svc").val();
-			var languages = $(".chzn-select-lang").val();
-			listUpdater(services, languages);
-		});
-
-
-/*
-		function listUpdater(svcs, langs) {
-			var results = [];
-			
-			if (svcs == null) {
 				svcs = ["all services"];
 			}
+
+			console.log("After filtering for distance and service there are " + results.length + " results.");
 			
-			if (langs == null) {
+			if (langs !== null){
+				$.each(langs, function (k, lang) { //Check if it matches the languages selected
+					results = _.filter(results, function (agency) {return agency.languages.indexOf(lang) !== -1;});
+				});
+			}else{
 				langs = ["any language"];
 			}
 			
-			$('.madlib').html('Looking for counselors who know about <span class="services">' + svcs.join(' or ') + '</span> and speak <span class="languages">' + langs.join(' or ') + '</span>.');
+			console.log("After filtering for distance, service and language there are " + results.length + " results.");
+			
+			if (mapradius == 0){
+				$('#madlib').html('Adjust the filters below to find housing counselors.');
+			}else{
+				$('#madlib').html('There are <span class="resultsnum">' + results.length + '</span> counseling agencies within <span class="radius">' + Math.round(mapradius/1609.34) + 'mi</span> who know about <span class="services">' + svcs.join(' and ') + '</span> and speak <span class="languages">' + langs.join(' and ') + '</span>.');
+			}
 
-			$.each(hudagencies.features, function (i, agency) { //Get the agencies
-				var servicematch = false;
-				var languagematch = false;
-				
-					$.each(svcs, function (j, svc) { //Check if it matches the services selected
-						if (agency.services.indexOf(svc) != -1) {
-							servicematch = true;
-						}
-					});
-				
-					$.each(langs, function (k, lang) { //Check if it matches the services selected
-						if (agency.languages.indexOf(lang) != -1) {
-							languagematch = true;
-						}
-					});
-				
-				if (servicematch == true && languagematch == true) {
-					results.push(agency);
-				}
+			//Sort the results by distance
+			results = _.sortBy(results, function(result){
+			return calcDistance(currentpos.getPosition().lat(), currentpos.getPosition().lng(), parseFloat(result.agc_ADDR_LATITUDE), parseFloat(result.agc_ADDR_LONGITUDE));
 			});
 			
-			$('#listing').empty();
-
-			if (results.length != 0){
-				$.each(results, function (l, result) {
-					$('#listing').append("<li id='" + result.agcid + "' class='result' data-svcs='" + result.services.replace(/\,/g, ' ') + "' data-langs='" + result.languages.replace(/\,/g, ' ') + "'><strong>" + result.nme + "</strong> <em>about " + calcDistance(38.80151130000001, -77.0490107, parseFloat(result.agc_ADDR_LATITUDE), parseFloat(result.agc_ADDR_LONGITUDE)) + " miles away<br/>" + result.services + " | " + result.languages + "</li>");
-				});
-			}else{
-				$('#listing').html('<h2>Sorry, no results match. Adjust your filters and try again.</h2>');	
-			}
-		
+			//Hand off your sorted array of results
+			return(results);
+			
 		}
 		
-*/
-		
-		$("#go").click(function () { //Assign entered fields to address vars
-			$.each(hudagencies.features, function (i, agency) {
+		//DISPLAY THE UPDATED ARRAY ON THE LIST AND MAP
+		function mapUpdater() {
+						
+			$('#listing').empty();
+					
+			$.each(results, function(i, agency){
 			
-				$('#listing').append("<li id='" + agency.agcid + "' class='result' data-svcs='" + agency.services.replace(/\,/g, ' ') + "' data-langs='" + agency.languages.replace(/\,/g, ' ') + "'><strong>" + agency.nme + "</strong> <em>about " + calcDistance(38.80151130000001, -77.0490107, parseFloat(agency.agc_ADDR_LATITUDE), parseFloat(agency.agc_ADDR_LONGITUDE)) + " miles away<br/>" + agency.services + " | " + agency.languages + "</li>");
-				map.addMarker({ //drop a pin
+				$('#listing').append('<li id="' + agency.agcid + '" class="result ' + agency.services.replace(/\,/g, ' ') + ' ' + agency.languages.replace(/\,/g, ' ') + '"><span class="result-title">' + agency.nme + '</span><span class="result-address-phone">'+ agency.adr1 + ' ' + agency.adr2 + '<br/>' + agency.city + ' ' + agency.statecd + ' ' + agency.zipcd + '<br/><a href="PHONE" class="phone">'+ agency.phone1 + '</a></span><span class="result-distance">about '+calcDistance(currentpos.getPosition().lat(), currentpos.getPosition().lng(), parseFloat(agency.agc_ADDR_LATITUDE), parseFloat(agency.agc_ADDR_LONGITUDE))+' mi away | <a href="URL" target="_blank">directions</a></span>					<span class="result-flags"></span></li>');
+					
+					//Add language flags
+					var langs = agency.languages.split(",");				
+					$.each(langs, function(j, language){
+						$('#'+agency.agcid+' .result-flags').append('<span class="result-flag '+language+'"></span>');
+					});
+					
+					//Add URL or email, if there
+					if (agency.weburl.toUpperCase() != "HTTP://N/A"){
+						$('#'+agency.agcid+' .result-title').wrap('<a href="'+agency.weburl+'">');
+					}else if (agency.email.toUpperCase() != "N/A"){
+						$('#'+agency.agcid+' .result-title').wrap('<a href="mailto:'+agency.email+'">');					
+					}
+				
+				resultmarker = map.addMarker({ //drop a pin
 					lat: agency.agc_ADDR_LATITUDE,
 					lng: agency.agc_ADDR_LONGITUDE,
 					animation: google.maps.Animation.DROP,
 					title: agency.nme,
 					infoWindow: {
-						content: "<p><strong>" + agency.nme + "</strong></p>"
+						content: '<span class="result-title">' + agency.nme + '</span><span class="result-address-phone">'+ agency.adr1 + ' ' + agency.adr2 + '<br/>' + agency.city + ' ' + agency.statecd + ' ' + agency.zipcd + '<br/><a href="PHONE" class="phone">'+ agency.phone1 + '</a></span><span class="result-distance">about '+calcDistance(currentpos.getPosition().lat(), currentpos.getPosition().lng(), parseFloat(agency.agc_ADDR_LATITUDE), parseFloat(agency.agc_ADDR_LONGITUDE))+' mi away | <a href="URL" target="_blank">directions</a></span>'
 					},
 					mouseover: function (e) {
 						$('#' + agency.agcid).css('background', 'beige');
@@ -242,9 +263,12 @@
 						$('#' + agency.agcid).css('background', 'transparent');
 					}
 				});
+
 			});
-		});
-	});
+		
+		}
+			
+	}); //end document.ready
 
 	function GetLatLongFromAddr(myaddress) { //Get lat/long from entered address
 		GMaps.geocode({
@@ -268,7 +292,8 @@
 					currentpos = map.addMarker({ //drop a pin
 						lat: latlng.lat(),
 						lng: latlng.lng(),
-						animation: google.maps.Animation.DROP
+						animation: google.maps.Animation.DROP,
+						icon: "http://www.cretasolaris.gr/gfx/marker.png"
 					});
 				} else {
 					alert('Something went wrong. Try again.');
@@ -317,10 +342,11 @@
 			map.setZoom(14);
 		}
 	}
+	
 </script>
 
   <script>
-    var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+    var _gaq=[['_setAccount','UA-6102405-1'],['_trackPageview']];
     (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
     g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
     s.parentNode.insertBefore(g,s)}(document,'script'));

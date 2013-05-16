@@ -66,15 +66,20 @@ td { vertical-align: top; }
 
 body{
 font-family: "Roboto Slab";
-background-color: #e4e1dd;
+background-color: #efeeeb;
+margin: 0;
+padding: 0;
+}
+
+header, #main, footer{
+padding: 10px 20%;
+margin: 0 auto;
 }
 
 header{
-width: 100%;
-background: #90cf91;
+background: #9aaeaf;
 font-size: 0.85em;
 text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
-padding: 10px;
 box-shadow: 0px 2px 5px #666;
 }
 
@@ -88,7 +93,7 @@ header h2{
 margin-left: 5px;
 }
 
-#main{
+#locate{
 text-align: center;
 }
 
@@ -98,25 +103,129 @@ width: 100%;
 
 #main #geocoder #geocoder-input{
 padding: 10px;
-width: 80%;
+width: 100%;
 text-align: center;
 font-family: inherit;
-}
-
-#map{
-height: 500px !important;
-width: 500px !important;
-display: inline-block;
 }
 
 #findfilter{
 display: none;
 }
 
-.madlib .services, .madlib .languages{
-background: coral;
-padding: 0 2px;
+#leftpanel, #rightpanel{
+display: inline-block;
+vertical-align: top;
 }
+
+#leftpanel{
+width: 40%;
+font-size: 0.85em;
+}
+
+#rightpanel{
+width: 58%;
+border: solid 1px #aaa;
+}
+
+#map{
+width: 100%;
+height: 641px;
+}
+
+#madlib{
+border-bottom: solid 1px #ccc;
+padding-bottom: 10px;
+margin: 0px 0 10px 0;
+line-height: 1.7em;
+}
+
+#leftpanel h2{
+margin: 20px 0 10px 0;
+line-height: 1;
+}
+
+#leftpanel p{
+margin: 0 0 5px 0;
+line-height: 1.6;
+}
+
+#leftpanel h2:first-child{
+margin-top: 0;
+}
+
+.resultsnum, .radius, .services, .languages{
+background: rgba(154, 174, 175, 0.2);
+padding: 0 3px;
+white-space: nowrap;
+}
+
+#listing{
+padding: 10px 20px;
+border-top: solid 1px #ccc;
+overflow-y: scroll;
+}
+
+#listing li{
+margin-bottom: 25px;
+}
+
+.result-title, .result-address-phone, .result-distance{
+margin-bottom: 5px;
+display: block;
+}
+
+.result-title{
+font-weight: 700;
+text-decoration: underline;
+}
+
+.result-distance{
+font-size: 0.75em;
+text-transform: uppercase;
+}
+
+.result-flags{
+display: block;
+}
+
+.result-flag{
+display: inline-block;
+margin-right: 5px;
+}
+
+.result-flag.ENG{
+background: url('http://svn.dojotoolkit.org/src/demos/trunk/i18n/flags.png') -216px -254px;
+width: 18px;
+height: 13px;
+}
+
+.result-flag.SPA{
+background: url('http://svn.dojotoolkit.org/src/demos/trunk/i18n/flags.png') -168px -69px;
+width: 18px;
+height: 13px;
+}
+
+.result-flag.ASL{
+background: url('http://www.manoamano-unidos.org/wp-content/themes/manoamano/images/asl-icon.png') no-repeat;
+background-size: 18px 13px;
+width: 18px;
+height: 13px;
+}
+
+#distance{
+padding: 0 4px;
+font: inherit;
+margin-left: 2px;
+}
+
+select .chzn-select-svc .chzn-done{
+width: 100%;
+}
+
+select > *{
+width: 100%;
+}
+
 
 /*Geocodify CSS, taken from https://raw.github.com/datadesk/jquery-geocodify/master/jquery.geocodify.css*/
 
