@@ -191,26 +191,14 @@ display: block;
 .result-flag{
 display: inline-block;
 margin-right: 5px;
+width: 23px;
+height: 17px;
 }
 
-.result-flag.ENG{
-background: url('http://svn.dojotoolkit.org/src/demos/trunk/i18n/flags.png') -216px -254px;
-width: 18px;
-height: 13px;
-}
-
-.result-flag.SPA{
-background: url('http://svn.dojotoolkit.org/src/demos/trunk/i18n/flags.png') -168px -69px;
-width: 18px;
-height: 13px;
-}
-
-.result-flag.ASL{
-background: url('http://www.manoamano-unidos.org/wp-content/themes/manoamano/images/asl-icon.png') no-repeat;
-background-size: 18px 13px;
-width: 18px;
-height: 13px;
-}
+.result-flag.ENG{background: url('../img/US.png');}
+.result-flag.SPA{background: url('../img/ES.png');}
+.result-flag.FRE{background: url('../img/FR.png');}
+.result-flag.CHI{background: url('../img/CN.png');}
 
 #distance{
 padding: 0 4px;
