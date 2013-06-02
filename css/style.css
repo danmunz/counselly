@@ -72,7 +72,7 @@ padding: 0;
 }
 
 header, #main, footer{
-padding: 10px 20%;
+padding: 10px 5%;
 margin: 0 auto;
 }
 
@@ -163,6 +163,7 @@ white-space: nowrap;
 padding: 10px 20px;
 border-top: solid 1px #ccc;
 overflow-y: scroll;
+max-height: 400px; 
 }
 
 #listing li{
