@@ -50,24 +50,12 @@
 			<p>Only show me agencies who provide counseling on:</p>
 				<select data-placeholder="begin typing here" class="chzn-select-svc" multiple>
 				<option value=""></option> 
-				<option value="DFC">DFC</option> 
-				<option value="FBC">FBC</option> 
-				<option value="FHW">FHW</option> 
-				<option value="HIC">HIC</option> 
-				<option value="HMC">HMC</option> 
-				<option value="NDW">NDW</option> 
-				<option value="PPC">PPC</option> 
-				<option value="PPW">PPW</option> 
-				<option value="RHC">RHC</option> 
 				</select>
 				
 			<h2>Languages</h2>
 			<p>Only show me counselors who speak:</p>
 				<select data-placeholder="I'm looking for a counselor who speaks…" class="chzn-select-lang" multiple>
 				<option value=""></option> 
-				<option value="ENG">English</option> 
-				<option value="SPA">Español</option> 
-				<option value="ASL">American Sign Language</option> 
 				</select>
 				
 				<ol id="listing">
@@ -100,6 +88,8 @@
 <script type="text/javascript" src="js/underscore.js"></script>
 
   <script src="js/agencies.js"></script>
+	<script src="js/datadict.js"></script>
+
 
 <script type="text/javascript">
 	$(document).ready(function () {
@@ -112,13 +102,24 @@
 			regionBias: "US",
 			initialText: "Begin typing here to find an address or zip code."
 		});
+
+		//Add service choices to chosen dropdown
+		$.each(svcsdict.services, function(i, service) {   
+		     $('.chzn-select-svc').append('<option value="'+service.key+'">'+service.value+'</option>');
+		});
+		
+		//Add language choices to chosen dropdown
+		$.each(langsdict.languages, function(j, language) {   
+		     $('.chzn-select-lang').append('<option value="'+language.key+'">'+language.value+'</option>');
+		});
+
 		$(".chzn-select-svc").chosen();
 		$(".chzn-select-lang").chosen();
 		
 		//Initialize some global variables
 		var myaddress = "";
 		var circleonce = false;
-		results = [];
+		var results = [];
 		
 		//Catch changes in distance
 		$('#distance').keyup(function () {
@@ -218,7 +219,7 @@
 		function mapUpdater() {
 						
 			$('#listing').empty();
-					
+								
 			$.each(results, function(i, agency){
 			
 				$('#listing').append('<li id="' + agency.agcid + '" class="result ' + agency.services.replace(/\,/g, ' ') + ' ' + agency.languages.replace(/\,/g, ' ') + '"><span class="result-title">' + agency.nme + '</span><span class="result-address-phone">'+ agency.adr1 + ' ' + agency.adr2 + '<br/>' + agency.city + ' ' + agency.statecd + ' ' + agency.zipcd + '<br/><a href="PHONE" class="phone">'+ agency.phone1 + '</a></span><span class="result-distance">about '+calcDistance(currentpos.getPosition().lat(), currentpos.getPosition().lng(), parseFloat(agency.agc_ADDR_LATITUDE), parseFloat(agency.agc_ADDR_LONGITUDE))+' mi away | <a href="URL" target="_blank">directions</a></span>					<span class="result-flags"></span></li>');
@@ -226,7 +227,9 @@
 					//Add language flags
 					var langs = agency.languages.split(",");				
 					$.each(langs, function(j, language){
+						var full_lang = _.findWhere(langsdict.languages, {key: language});
 						$('#'+agency.agcid+' .result-flags').append('<span class="result-flag '+language+'"></span>');
+						$('#'+agency.agcid+' .result-flags').append('<span class="result-flag">'+full_lang.value+'</span><br/>');
 					});
 					
 					//Add URL or email, if there
@@ -282,8 +285,8 @@
 						lat: latlng.lat(),
 						lng: latlng.lng(),
 						animation: google.maps.Animation.DROP,
-						icon: "http://www.melinanina.com/_/rsrc/1357985119821/home/google-maps-pin-blue-hi.png?height=41&width=49"
-					});
+						icon: "http://www.dreamrealty.com/images/blue_dot_circle.png"
+					});					
 				} else {
 					alert('Something went wrong. Try again.');
 				}

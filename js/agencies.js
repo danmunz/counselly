@@ -1,241 +1,868 @@
 var hudagencies = {
-    "features": [
-	   {
-
-      "agcid":"81961",
-
-      "adr1":"3220 Pennsylvania Avenue SE, Suite 4",
-
-      "adr2":" ",
-
-      "city":"WASHINGTON",
-
-      "email":"jbrown@uls-dc.com",
-
-      "fax":"202-547-2083",
-
-      "nme":"UNIVERSITY LEGAL SERVICES",
-
-      "phone1":"202-547-4747",
-
-      "statecd":"DC",
-
-      "weburl":"http://n/a",
-
-      "zipcd":"20020-3712",
-
-      "agc_ADDR_LONGITUDE":"-76.960016",
-
-      "agc_ADDR_LATITUDE":"38.86913",
-
-      "languages":"ENG",
-
-      "services":"DFC,FBC,HIC,HMC,RHC"
-
-   },
-
-   {
-
-      "agcid":"80219",
-
-      "adr1":"1173 W. Main Street",
-
-      "adr2":" ",
-
-      "city":"ABINGDON",
-
-      "email":"jgross@peopleinc.net",
-
-      "fax":"276-628-2931",
-
-      "nme":"PEOPLE INCORPORATED OF SOUTHWEST VIRGINIA",
-
-      "phone1":"276-623-9000-2201",
-
-      "statecd":"VA",
-
-      "weburl":"http://www.peopleinc.net",
-
-      "zipcd":"24210-4703",
-
-      "agc_ADDR_LONGITUDE":"-82.013917",
-
-      "agc_ADDR_LATITUDE":"36.697010",
-
-      "languages":"SPA",
-
-      "services":"FHW,HIC,NDW,PPW,RHC"
-
-   },
-   
-   {
-
-      "agcid":"80239",
-
-      "adr1":"255 Orange St",
-
-      "adr2":" ",
-
-      "city":"ALBANY",
-
-      "email":"N/A",
-
-      "fax":"N/A",
-
-      "nme":"AFFORDABLE HOUSING PARTNERSHIP",
-
-      "phone1":"518-434-1730",
-
-      "statecd":"NY",
-
-      "weburl":"http://www.ahphome.org",
-
-      "zipcd":"12210-2400",
-
-      "agc_ADDR_LONGITUDE":"-73.757325",
-
-      "agc_ADDR_LATITUDE":"42.657815",
-
-      "languages":"ASL,SPA",
-
-      "services":"FHW,PPW,RHC,FBC,HIC"
-
-   },
-   
-      {
-
-      "agcid":"83519",
-
-      "adr1":"841 E 2ND",
-
-      "adr2":" ",
-
-      "city":"CARSON CITY",
-
-      "email":"ccanv@aol.com",
-
-      "fax":"N/A",
-
-      "nme":"CONSUMER CREDIT COUNSELING SERVICE OF SOUTHERN NEVADA",
-
-      "phone1":"800-451-4505",
-
-      "statecd":"NV",
-
-      "weburl":"http://www.cccsnevada.org",
-
-      "zipcd":"12210-2400",
-
-      "agc_ADDR_LONGITUDE":"-119.760293",
-
-      "agc_ADDR_LATITUDE":"39.162960",
-
-      "languages":"ENG,SPA",
-
-      "services":"FHW,PPW"
-
-   },
-   
-     {
-
-      "agcid":"88019",
-
-      "adr1":"115 W. Chicago Ave",
-
-      "adr2":" ",
-
-      "city":"CHICAGO",
-
-      "email":"dfeidt@accessliving.org",
-
-      "fax":"312-640-2101",
-
-      "nme":"ACCESS LIVING OF METROPOLITAN CHICAGO",
-
-      "phone1":"312-640-2100-2197",
-
-      "statecd":"IL",
-
-      "weburl":"http://N/A",
-
-      "zipcd":"60654-3209",
-
-      "agc_ADDR_LONGITUDE":"-87.632235",
-
-      "agc_ADDR_LATITUDE":"41.896619",
-
-      "languages":"ASL,ENG,SPA",
-
-      "services":"HIC,NDW,PPW"
-
-   },
-   
-        {
-
-      "agcid":"89019",
-
-      "adr1":"801 N Pitt St",
-
-      "adr2":"Apt 117",
-
-      "city":"ALEXANDRIA",
-
-      "email":"counselinginfo@moneymanagement.org",
-
-      "fax":"866-921-5129",
-
-      "nme":"MONEY MANAGEMENT INTERNATIONAL ALEXANDRIA VA",
-
-      "phone1":"866-232-9080",
-
-      "statecd":"VA",
-
-      "weburl":"http://www.moneymanagement.org",
-
-      "zipcd":"22314-1783",
-
-      "agc_ADDR_LONGITUDE":"-77.042357",
-
-      "agc_ADDR_LATITUDE":"38.813227",
-
-      "languages":"ENG,SPA",
-
-      "services":"DFC,HIC,RHC"
-
-   },
-          {
-
-      "agcid":"83034",
-
-      "adr1":"2300 9th St S",
-
-      "adr2":"Ste 300B",
-
-      "city":"ARLINGTON",
-
-      "email":"N/A",
-
-      "fax":"312-640-2101",
-
-      "nme":"AHOME",
-
-      "phone1":"703-527-3854",
-
-      "statecd":"VA",
-
-      "weburl":"http://www.ahomeinc.org",
-
-      "zipcd":"22204-2345",
-
-      "agc_ADDR_LONGITUDE":"-77.082990",
-
-      "agc_ADDR_LATITUDE":"38.864607",
-
-      "languages":"ENG",
-
-      "services":"HIC,NDW,RHC"
-
-   }
+	"features": [{
+			"agcid": "80350",
+			"adr1": "108 Henry (1St) Street NW",
+			"adr2": " ",
+			"city": "ROANOKE",
+			"email": "charlotte.davis@tapintohope.org",
+			"fax": "540-777-0450",
+			"nme": "TOTAL ACTION AGAINST POVERTY IN ROANOKE VALLEY",
+			"phone1": "540-283-4917",
+			"statecd": "VA",
+			"weburl": "http://www.tapintohope.org",
+			"zipcd": "24016-2414",
+			"agc_ADDR_LONGITUDE": "-79.942368",
+			"agc_ADDR_LATITUDE": "37.274227",
+			"languages": "ENG,SPA",
+			"services": "DFC,FBC,FHW,HIC,HMC,NDW,PLW,PPC,PPW,RHC"
+		}, {
+			"agcid": "80202",
+			"adr1": "61 N. Main Street",
+			"adr2": " ",
+			"city": "CHATHAM",
+			"email": "rroark@telamon.org",
+			"fax": " ",
+			"nme": "TELAMON CORPORATION",
+			"phone1": "434-688-4640",
+			"statecd": "VA",
+			"weburl": "http://www.telamon.org",
+			"zipcd": "24531-3113",
+			"agc_ADDR_LONGITUDE": "-79.398361",
+			"agc_ADDR_LATITUDE": "36.825536",
+			"languages": "ENG",
+			"services": "DFC,FBC,FHW,HIC,NDW,PLW,PPC,PPW"
+		}, {
+			"agcid": "80505",
+			"adr1": "347 Campbeull Avenue S.W",
+			"adr2": " ",
+			"city": "ROANOKE",
+			"email": "bpusha@sercap.org",
+			"fax": "540-342-2932",
+			"nme": "SOUTHEAST RURAL COMMUNITY ASSISTANCE PROJECT",
+			"phone1": "540-345-1184",
+			"statecd": "VA",
+			"weburl": "www.sercap.org",
+			"zipcd": "24016-3624",
+			"agc_ADDR_LONGITUDE": "-79.94752",
+			"agc_ADDR_LATITUDE": "37.271423",
+			"languages": "ENG,SPA",
+			"services": "DFC,DFW,FBC,FBW,FHW,HIC,HMC,NDW,PLW,PPC,PPW,RHC,RHW"
+		}, {
+			"agcid": "80542",
+			"adr1": "31 Stanard Street",
+			"adr2": " ",
+			"city": "STANARDSVILLE",
+			"email": "jnaylor@skylinecap.org",
+			"fax": "434-985-6035",
+			"nme": "SKYLINE COMMUNITY ACTION PROGRAM, INCORPORATE",
+			"phone1": "434-985-6066",
+			"statecd": "VA",
+			"weburl": "http://www.skylinecap.org",
+			"zipcd": "22973-3756",
+			"agc_ADDR_LONGITUDE": "-78.440015",
+			"agc_ADDR_LATITUDE": "38.296051",
+			"languages": "ENG",
+			"services": "DFC,FBC,HIC,HMC,PPC,RHC"
+		}, {
+			"agcid": "81839",
+			"adr1": "1215 East Market Street Ste. B",
+			"adr2": " ",
+			"city": "CHARLOTTESVILLE",
+			"email": "shelleym@piedmonthousing.org",
+			"fax": "434-817-0664",
+			"nme": "PIEDMONT HOUSING ALLIANCE",
+			"phone1": "434-817-2436-104",
+			"statecd": "VA",
+			"weburl": "http://www.piedmonthousingalliance.org",
+			"zipcd": "22902-5512",
+			"agc_ADDR_LONGITUDE": "-78.469574",
+			"agc_ADDR_LATITUDE": "38.027225",
+			"languages": "ENG,SPA",
+			"services": "DFC,FBC,FHW,HMC,NDW,PLW,PPC,PPW,RHC"
+		}, {
+			"agcid": "84017",
+			"adr1": "1093 East Main Street",
+			"adr2": " ",
+			"city": "RADFORD",
+			"email": "lyost@nrcaa.org",
+			"fax": "540-633-2585",
+			"nme": "NEW RIVER COMMUNITY ACTION, INC.",
+			"phone1": "540-633-5133-440",
+			"statecd": "VA",
+			"weburl": "http://www.newrivercommunityaction.org",
+			"zipcd": "24141-1747",
+			"agc_ADDR_LONGITUDE": "-80.556686",
+			"agc_ADDR_LATITUDE": "37.140987",
+			"languages": "ENG",
+			"services": "DFC,FHW,HMC,PLW,PPC,PPW,RHC"
+		}, {
+			"agcid": "82650",
+			"adr1": "7000 Peters Creek Rd",
+			"adr2": "null",
+			"city": "Roanoke",
+			"email": "counselinginfo@moneymanagement.org",
+			"fax": "866-921-5129",
+			"nme": "MONEY MANAGEMENT INTERNATIONAL ROANOKE",
+			"phone1": "866-232-9080",
+			"statecd": "VA",
+			"weburl": "http://www.moneymanagement.org",
+			"zipcd": "24019-4009",
+			"agc_ADDR_LONGITUDE": "-79.956651",
+			"agc_ADDR_LATITUDE": "37.346307",
+			"languages": "ENG,SPA",
+			"services": "DFC,FBC,NDW,PPC,PPW,RHC"
+		}, {
+			"agcid": "80625",
+			"adr1": "915 Main Street",
+			"adr2": "2nd Floor Galleria",
+			"city": "LYNCHBURG",
+			"email": "myuille@lyncag.org",
+			"fax": "434-846-2759",
+			"nme": "LYNCHBURG COMMUNITY ACTION GROUP, INCORPORATE (AKA LYNCAG)",
+			"phone1": "434-455-1601-3",
+			"statecd": "VA",
+			"weburl": "http://www.lyncag.org",
+			"zipcd": "24504-1628",
+			"agc_ADDR_LONGITUDE": "-79.142193",
+			"agc_ADDR_LATITUDE": "37.414725",
+			"languages": "ENG",
+			"services": "DFC,FHW,HIC,HMC,NDW,PLW,PPC,PPW,RHC"
+		}, {
+			"agcid": "83979",
+			"adr1": "674 Hillsdale Dr Ste 9",
+			"adr2": "674 Hillsdale Dr Suite #9",
+			"city": "Charlottesville",
+			"email": "lchavis@jabacares.org",
+			"fax": "434-817-5230",
+			"nme": "JEFFERSON AREA BOARD ON AGING",
+			"phone1": "434-817-5222",
+			"statecd": "VA",
+			"weburl": "http://www.jabacares.org",
+			"zipcd": "22901-1799",
+			"agc_ADDR_LONGITUDE": "-78.475554",
+			"agc_ADDR_LATITUDE": "38.074067",
+			"languages": "ENG",
+			"services": "null"
+		}, {
+			"agcid": "82314",
+			"adr1": "1404 North Randolph Avenue",
+			"adr2": " ",
+			"city": "ELKINS",
+			"email": "bweese@hocwv.org",
+			"fax": "304-636-4125",
+			"nme": "HOMEOWNERSHIP CENTER, INC.",
+			"phone1": "304-636-6495-27",
+			"statecd": "WV",
+			"weburl": "www.hocwv.org",
+			"zipcd": "26241-9667",
+			"agc_ADDR_LONGITUDE": "-79.855719",
+			"agc_ADDR_LATITUDE": "38.945509",
+			"languages": "ENG,SPA",
+			"services": "DFC,FHW,HIC,NDW,PLW,PPC,PPW"
+		}, {
+			"agcid": "83461",
+			"adr1": "680 W. Main Street",
+			"adr2": "P.O. Box 743",
+			"city": "WYTHEVILLE",
+			"email": "akegley@wythehope.org",
+			"fax": "276-228-0508",
+			"nme": "HELPING OVERCOME POVERTY'S EXISTENCE, INC., (FORMERLY MOUNTAIN SHELTER, INC.)",
+			"phone1": "276-228-6280-211",
+			"statecd": "VA",
+			"weburl": "http://www.wythehope.org",
+			"zipcd": "24382-2211",
+			"agc_ADDR_LONGITUDE": "-81.088439",
+			"agc_ADDR_LATITUDE": "36.94608",
+			"languages": "ENG",
+			"services": "DFC,FBC,FHW,HMC,NDW,PPC,PPW,RHC,RHW"
+		}, {
+			"agcid": "80330",
+			"adr1": "104 E Center St Apt 4",
+			"adr2": "null",
+			"city": "Oakland",
+			"email": "N/A",
+			"fax": "000-000-0000",
+			"nme": "GARRETT COUNTY COMMUNITY ACTION COMMITTEE, INC.",
+			"phone1": "301-334-9431",
+			"statecd": "MD",
+			"weburl": "http://www.garrettcac.org",
+			"zipcd": "21550-1341",
+			"agc_ADDR_LONGITUDE": "-79.407396",
+			"agc_ADDR_LATITUDE": "39.41091",
+			"languages": "ENG,SPA",
+			"services": "DFC,HIC,HMC,NDW,PLW,PPC,PPW,RHC"
+		}, {
+			"agcid": "83926",
+			"adr1": "135 Jones Crossing",
+			"adr2": " ",
+			"city": "DANVILLE",
+			"email": "kwalker@drhava.com",
+			"fax": "434-792-2806",
+			"nme": "DANVILLE REDEVELOPMENT AND HOUSING AUTHORITY",
+			"phone1": "434-792-2908-20",
+			"statecd": "VA",
+			"weburl": "www.drhava.com",
+			"zipcd": "24541-2245",
+			"agc_ADDR_LONGITUDE": "-79.3846",
+			"agc_ADDR_LATITUDE": "36.5708",
+			"languages": "ENG",
+			"services": "FBC,PPC,PPW"
+		}, {
+			"agcid": "81925",
+			"adr1": "990 Cambria St NE",
+			"adr2": " ",
+			"city": "Christiansburg",
+			"email": "N/A",
+			"fax": " ",
+			"nme": "COMMUNITY HOUSING PARTNERS CORPORATION",
+			"phone1": "540-260-9039",
+			"statecd": "VA",
+			"weburl": "http://www.communityhousingpartners.org",
+			"zipcd": "24073-1602",
+			"agc_ADDR_LONGITUDE": "-80.405399",
+			"agc_ADDR_LATITUDE": "37.142514",
+			"languages": "ENG",
+			"services": "NDW,PPC,PPW"
+		}, {
+			"agcid": "84734",
+			"adr1": "661 Arnett Blvd",
+			"adr2": "Suite B",
+			"city": "Danville",
+			"email": "hud-inquiries@clearpointfs.org",
+			"fax": "434-799-3271",
+			"nme": "CLEARPOINT FINANCIAL SOLUTIONS, INC.",
+			"phone1": "434-792-2227",
+			"statecd": "VA",
+			"weburl": "http://www.clearpointccs.org",
+			"zipcd": "24540-2506",
+			"agc_ADDR_LONGITUDE": "-79.398228",
+			"agc_ADDR_LATITUDE": "36.615442",
+			"languages": "ASL,ENG,OTH,SPA",
+			"services": "null"
+		}, {
+			"agcid": "84722",
+			"adr1": "1658 State Farm Blvd Ste B",
+			"adr2": "-",
+			"city": "Charlottesville",
+			"email": "hud-inquiries@clearpointfs.org",
+			"fax": "434-977-0665",
+			"nme": "CLEARPOINT FINANCIAL SOLUTIONS, INC.",
+			"phone1": "434-977-9596",
+			"statecd": "VA",
+			"weburl": "http://www.clearpointccs.org",
+			"zipcd": "22911-3563",
+			"agc_ADDR_LONGITUDE": "-78.442299",
+			"agc_ADDR_LATITUDE": "38.02741",
+			"languages": "ASL,ENG,OTH,SPA",
+			"services": "DFC,FBC,PPC"
+		}, {
+			"agcid": "80244",
+			"adr1": "209 W Pike St Ste B",
+			"adr2": " ",
+			"city": "Clarksburg",
+			"email": "cccsdir@criss-crosswv.org",
+			"fax": "304-624-4089",
+			"nme": "CCCS OF NORTH CENTRAL WEST VIRGINA",
+			"phone1": "304-623-0921",
+			"statecd": "WV",
+			"weburl": "http://criss-crosswv.org",
+			"zipcd": "26301-2708",
+			"agc_ADDR_LONGITUDE": "-80.337628",
+			"agc_ADDR_LATITUDE": "39.280211",
+			"languages": "ASL,ENG",
+			"services": "DFC,FBC,HMC,NDW,PLW,PPC,PPW,RHC,RMC"
+		}, {
+			"agcid": "83626",
+			"adr1": "115 Chester St Ste C",
+			"adr2": "null",
+			"city": "Front Royal",
+			"email": "N/A",
+			"fax": "null",
+			"nme": "BLUE RIDGE HOUSING NETWORK",
+			"phone1": "540-622-2711",
+			"statecd": "VA",
+			"weburl": "http://www.brhn.net",
+			"zipcd": "22630-3308",
+			"agc_ADDR_LONGITUDE": "-78.191731",
+			"agc_ADDR_LATITUDE": "38.919845",
+			"languages": "ENG",
+			"services": "DFC,PPC,PPW"
+		}, {
+			"agcid": "80247",
+			"adr1": "Green Valley Business Center #101",
+			"adr2": "248 Blue Prince Rd",
+			"city": "Bluefield",
+			"email": "rbishop@cccswv.com",
+			"fax": "304-324-0375",
+			"nme": "APPRISEN - CCCS - BLUEFIELD",
+			"phone1": "304-325-5143-1375",
+			"statecd": "WV",
+			"weburl": "http://cccswv.com",
+			"zipcd": "24701-6282",
+			"agc_ADDR_LONGITUDE": "-81.2483",
+			"agc_ADDR_LATITUDE": "37.2709",
+			"languages": "ENG,FRE",
+			"services": "DFC,DFW,FBC,FBW,PPC,PPW"
+		}, {
+			"agcid": "80248",
+			"adr1": "109 East Main Street Suite 202",
+			"adr2": "PO Box 2129",
+			"city": "BECKLEY",
+			"email": "rcoleman@cccswv.com",
+			"fax": "304-255-2412",
+			"nme": "APPRISEN - CCCS - BECKLEY",
+			"phone1": "304-255-2499-301",
+			"statecd": "WV",
+			"weburl": "http://cccswv.com",
+			"zipcd": "25801-4616",
+			"agc_ADDR_LONGITUDE": "-81.187466",
+			"agc_ADDR_LATITUDE": "37.777943",
+			"languages": "ENG",
+			"services": "DFC,DFW,FBC,FBW,PPC,PPW"
+		}, {
+			"agcid": "80219",
+			"adr1": "220 I St NE Ste 130",
+			"adr2": " ",
+			"city": "WASHINGTON",
+			"email": "mbeard@uls-dc.org",
+			"fax": "202-547-2083",
+			"nme": "UNIVERSITY LEGAL SERVICES",
+			"phone1": "202-547-4747",
+			"statecd": "DC",
+			"weburl": "http://n/a",
+			"zipcd": "20002-4364",
+			"agc_ADDR_LONGITUDE": "-77.003258",
+			"agc_ADDR_LATITUDE": "38.901313",
+			"languages": "ENG,SPA",
+			"services": "DFC,FBC,FHW,HIC,HMC,NDW,PPC,PPW,RHC"
+		}, {
+			"agcid": "81961",
+			"adr1": "3220 Pennsylvania Avenue SE, Suite 4",
+			"adr2": " ",
+			"city": "WASHINGTON",
+			"email": "jbrown@uls-dc.com",
+			"fax": "202-547-2083",
+			"nme": "UNIVERSITY LEGAL SERVICES",
+			"phone1": "202-547-4747",
+			"statecd": "DC",
+			"weburl": "http://www.uls-dc.org",
+			"zipcd": "20020-3712",
+			"agc_ADDR_LONGITUDE": "-76.960016",
+			"agc_ADDR_LATITUDE": "38.86913",
+			"languages": "ENG",
+			"services": "DFC,FBC,FHW,HIC,HMC,NDW,PLW,PPC,PPW,RHC"
+		}, {
+			"agcid": "83871",
+			"adr1": "5801 Allentown Road, Suite 309",
+			"adr2": " ",
+			"city": "SUITLAND",
+			"email": "unityedc@aol.com",
+			"fax": "301-505-2242",
+			"nme": "UNITY ECONOMIC DEVELOPMENT CORPORATION",
+			"phone1": "301-505-0331",
+			"statecd": "MD",
+			"weburl": "http://n/a",
+			"zipcd": "20746-4563",
+			"agc_ADDR_LONGITUDE": "-76.898878",
+			"agc_ADDR_LATITUDE": "38.80812",
+			"languages": "ENG",
+			"services": "FHW,PLW,PPC,PPW"
+		}, {
+			"agcid": "82782",
+			"adr1": "1718 Seventh St. NW",
+			"adr2": " ",
+			"city": "WASHINGTON",
+			"email": "dpayne@upo.org",
+			"fax": "202-234-3216",
+			"nme": "UNITED PLANNING ORGANIZATION - SHAW COMMUNITY SVC. CENTER",
+			"phone1": "202-610-5861",
+			"statecd": "DC",
+			"weburl": "www.upo.org",
+			"zipcd": "20001-3106",
+			"agc_ADDR_LONGITUDE": "-77.021922",
+			"agc_ADDR_LATITUDE": "38.912886",
+			"languages": "ENG",
+			"services": "DFC,FHW,HMC,PLW,PPC,PPW,RHC"
+		}, {
+			"agcid": "82783",
+			"adr1": "2907 Martin Luther King Jr. Ave., SE",
+			"adr2": " ",
+			"city": "WASHINGTON",
+			"email": "dpayne@upo.org",
+			"fax": "202-889-1312",
+			"nme": "UNITED PLANNING ORGANIZATION - PETEY GREENE COMMUNITY SVC. CENTER",
+			"phone1": "202-610-5861",
+			"statecd": "DC",
+			"weburl": "www.upo.org",
+			"zipcd": "20032-2523",
+			"agc_ADDR_LONGITUDE": "-76.997033",
+			"agc_ADDR_LATITUDE": "38.845544",
+			"languages": "ENG",
+			"services": "DFC,FHW,HMC,PLW,PPC,PPW,RHC"
+		}, {
+			"agcid": "82781",
+			"adr1": "1649 Good Hope Road SE",
+			"adr2": " ",
+			"city": "WASHINGTON",
+			"email": "dpayne@upo.org",
+			"fax": "202-889-1312",
+			"nme": "UNITED PLANNING ORGANIZATION - ANACOSTIA CENTER",
+			"phone1": "202-610-5861",
+			"statecd": "DC",
+			"weburl": "www.upo.org",
+			"zipcd": "20020-4705",
+			"agc_ADDR_LONGITUDE": "-76.980916",
+			"agc_ADDR_LATITUDE": "38.866016",
+			"languages": "ENG",
+			"services": "DFC,FHW,HMC,PLW,PPC,PPW,RHC"
+		}, {
+			"agcid": "84980",
+			"adr1": "301 Rhode Island Avenue, NW",
+			"adr2": " ",
+			"city": "WASHINGTON",
+			"email": "whodges@upo.org",
+			"fax": "202-319-3279",
+			"nme": "UNITED PLANNING ORGANIZATION",
+			"phone1": "202-238-4625-625",
+			"statecd": "DC",
+			"weburl": "www.UPO.org",
+			"zipcd": "20001-1826",
+			"agc_ADDR_LONGITUDE": "-77.015772",
+			"agc_ADDR_LATITUDE": "38.91452",
+			"languages": "ENG",
+			"services": "DFC,FHW,HMC,PLW,PPC,PPW,RHC"
+		}, {
+			"agcid": "83897",
+			"adr1": "1400 Doewood Lane,",
+			"adr2": " ",
+			"city": "CAPITOL HEIGHTS",
+			"email": "mail@ucappgc.org",
+			"fax": "301-322-3881",
+			"nme": "UNITED COMMUNITIES AGAINST POVERTY",
+			"phone1": "301-322-5700",
+			"statecd": "MD",
+			"weburl": "http://www.ucappgc.org",
+			"zipcd": "20743-1018",
+			"agc_ADDR_LONGITUDE": "-76.926022",
+			"agc_ADDR_LATITUDE": "38.911001",
+			"languages": "ENG",
+			"services": "DFC,FBC,HIC,HMC,NDW,PLW,PPC,PPW,RHC"
+		}, {
+			"agcid": "84857",
+			"adr1": "2509 Good Hope Road, SE",
+			"adr2": " ",
+			"city": "WASHINGTON",
+			"email": "kevin.parker@operationhope.org",
+			"fax": " ",
+			"nme": "OPERATION HOPE, INC",
+			"phone1": "202-582-2212",
+			"statecd": "DC",
+			"weburl": "http://www.operationhope.org",
+			"zipcd": "20020-3011",
+			"agc_ADDR_LONGITUDE": "-76.969137",
+			"agc_ADDR_LATITUDE": "38.860979",
+			"languages": "ENG",
+			"services": "DFC,PPC,PPW"
+		}, {
+			"agcid": "84647",
+			"adr1": "3000 Victory Lane",
+			"adr2": " ",
+			"city": "SUITLAND",
+			"email": "Bleu@ogdginc.com",
+			"fax": "775-402-2566",
+			"nme": "OMEGA GOLD DEVELOPMENT GROUP",
+			"phone1": "301-534-8814",
+			"statecd": "MD",
+			"weburl": "www.ogdginc.com",
+			"zipcd": "20746-1295",
+			"agc_ADDR_LONGITUDE": "-76.921",
+			"agc_ADDR_LATITUDE": "38.8492",
+			"languages": "ENG",
+			"services": "DFC,FBC,NDW,PPC"
+		}, {
+			"agcid": "80037",
+			"adr1": "1315 Duke Street",
+			"adr2": " ",
+			"city": "ALEXANDRIA",
+			"email": "k.symonds@nvul.org",
+			"fax": "703-836-8948",
+			"nme": "NORTHERN VIRGINIA URBAN LEAGUE",
+			"phone1": "703-836-2858-127",
+			"statecd": "VA",
+			"weburl": "www.nvul.org",
+			"zipcd": "22314-3508",
+			"agc_ADDR_LONGITUDE": "-77.054198",
+			"agc_ADDR_LATITUDE": "38.803666",
+			"languages": "ENG,SPA",
+			"services": "DFC,FBC,FBW,NDW,PPC,PPW"
+		}, {
+			"agcid": "80332",
+			"adr1": "3211 Pennsylvania Ave SE",
+			"adr2": "null",
+			"city": "Washington",
+			"email": "N/A",
+			"fax": "null",
+			"nme": "NID-HCA WILLIAMS",
+			"phone1": "202-399-9136",
+			"statecd": "DC",
+			"weburl": "http://site.notavailable.org",
+			"zipcd": "20020-3711",
+			"agc_ADDR_LONGITUDE": "-76.960189",
+			"agc_ADDR_LATITUDE": "38.869196",
+			"languages": "ENG",
+			"services": "DFC,FBC,HMC,PPC,PPW,RHC"
+		}, {
+			"agcid": "80754",
+			"adr1": "1325 G. Street NW",
+			"adr2": "Suite 800",
+			"city": "WASHINGTON",
+			"email": "www.nw.org",
+			"fax": " ",
+			"nme": "NEIGHBORHOOD REINVESTMENT CORPORATION",
+			"phone1": "202-220-2300",
+			"statecd": "DC",
+			"weburl": "http://www.nw.org",
+			"zipcd": "20005-3104",
+			"agc_ADDR_LONGITUDE": "-77.0304",
+			"agc_ADDR_LATITUDE": "38.9021",
+			"languages": "ARA,CAM,CHI,KOR,SPA,VIE",
+			"services": "null"
+		}, {
+			"agcid": "80751",
+			"adr1": "2000 M St. NW",
+			"adr2": "Suite 505",
+			"city": "WASHINGTON",
+			"email": "cbernal@nfcc.org",
+			"fax": "202-677-4333",
+			"nme": "NATIONAL FOUNDATION FOR CREDIT COUNSELING, INC.",
+			"phone1": "202-677-4345",
+			"statecd": "DC",
+			"weburl": "http://www.nfcc.org",
+			"zipcd": "20036-3307",
+			"agc_ADDR_LONGITUDE": "-77.044942",
+			"agc_ADDR_LATITUDE": "38.905649",
+			"languages": "ENG,SPA",
+			"services": "DFC,FBC,PLW,PPW"
+		}, {
+			"agcid": "80758",
+			"adr1": "1126 16th Street, NW, Suite 600",
+			"adr2": "Raul Yzaguirre Building",
+			"city": "WASHINGTON",
+			"email": "ldiaz@nclr.org",
+			"fax": "202-776-1796",
+			"nme": "NATIONAL COUNCIL OF LA RAZA",
+			"phone1": "202-776-1573",
+			"statecd": "DC",
+			"weburl": "http://www.nclr.org",
+			"zipcd": "20036-4845",
+			"agc_ADDR_LONGITUDE": "-77.036538",
+			"agc_ADDR_LATITUDE": "38.90435",
+			"languages": "ENG,SPA",
+			"services": "DFC,NDW,PLW,PPC,PPW"
+		}, {
+			"agcid": "84434",
+			"adr1": "727 15th Street, N.W., Suite 900",
+			"adr2": " ",
+			"city": "WASHINGTON",
+			"email": "ccassell@ncrc.org",
+			"fax": "866-373-6605",
+			"nme": "NATIONAL COMMUNITY REINVESTMENT COALITION, INC.",
+			"phone1": "202-383-7702",
+			"statecd": "DC",
+			"weburl": "http://www.ncrc.org",
+			"zipcd": "20005-6027",
+			"agc_ADDR_LONGITUDE": "-77.033673",
+			"agc_ADDR_LATITUDE": "38.898832",
+			"languages": "CRE,ENG,FRE,OTH,SPA",
+			"services": "DFC,FBC,FHW,PPC,PPW"
+		}, {
+			"agcid": "81321",
+			"adr1": "727 15th Street, N.W., Suite 900",
+			"adr2": " ",
+			"city": "WASHINGTON",
+			"email": "ccassell@ncrc.org",
+			"fax": "866-373-6605",
+			"nme": "NATIONAL COMMUNITY REINVESTMENT COALITION",
+			"phone1": "202-383-7702",
+			"statecd": "DC",
+			"weburl": "www.ncrc.org",
+			"zipcd": "20005-6027",
+			"agc_ADDR_LONGITUDE": "-77.033673",
+			"agc_ADDR_LATITUDE": "38.898832",
+			"languages": "CRE,ENG,FRE,SPA",
+			"services": "DFC,FBC,FHW,PPC,PPW"
+		}, {
+			"agcid": "82339",
+			"adr1": "1628 16th Street, NW",
+			"adr2": "4th Floor",
+			"city": "WASHINGTON",
+			"email": "jane@nationalcapacd.org",
+			"fax": "510-981-3840",
+			"nme": "NATIONAL CAPACD",
+			"phone1": "510-452-4800",
+			"statecd": "DC",
+			"weburl": "http://nationalcapacd.org",
+			"zipcd": "20009-3064",
+			"agc_ADDR_LONGITUDE": "-77.036522",
+			"agc_ADDR_LATITUDE": "38.911896",
+			"languages": "CAM,CAN,CHI,CRE,ENG,HIN,HMO,KOR,OTH,VIE",
+			"services": "DFC,DFW,FBW,HMC,NDW,PLW,PPC,PPW,RHW"
+		}, {
+			"agcid": "84375",
+			"adr1": "1716 14th Street, N. W.",
+			"adr2": " ",
+			"city": "WASHINGTON",
+			"email": "bmarks@naca.com",
+			"fax": " ",
+			"nme": "NACA (NEIGHBORHOOD ASSISTANCE CORPORATION OF AMERICA) WASHINGTON, DC",
+			"phone1": "202-328-6333",
+			"statecd": "DC",
+			"weburl": "http://www.naca.com",
+			"zipcd": "20009-4309",
+			"agc_ADDR_LONGITUDE": "-77.03195",
+			"agc_ADDR_LATITUDE": "38.913167",
+			"languages": "ENG,OTH,SPA",
+			"services": "DFC,FBC,FHW,NDW,PLW,PPC,PPW"
+		}, {
+			"agcid": "80536",
+			"adr1": "801 N Pitt St Apt 117",
+			"adr2": "null",
+			"city": "Alexandria",
+			"email": "counselinginfo@moneymanagement.org",
+			"fax": "866-921-5129",
+			"nme": "MONEY MANAGEMENT INTERNATIONAL ALEXANDRIA VA",
+			"phone1": "866-232-9080",
+			"statecd": "VA",
+			"weburl": "http://www.moneymanagement.org",
+			"zipcd": "22314-1783",
+			"agc_ADDR_LONGITUDE": "-77.043021",
+			"agc_ADDR_LATITUDE": "38.812788",
+			"languages": "ENG,SPA",
+			"services": "DFC,FBC,HMC,NDW,PLW,PPC,PPW,RHC"
+		}, {
+			"agcid": "80221",
+			"adr1": "3939 Benning Road, NE",
+			"adr2": " ",
+			"city": "WASHINGTON",
+			"email": "mharris@mhcdo.org",
+			"fax": "202-396-4106",
+			"nme": "MARSHALL HEIGHTS COMMUNITY DEVELOPMENT ORGANIZATION",
+			"phone1": "202-396-1201-660",
+			"statecd": "DC",
+			"weburl": "http://www.mhcdo.org",
+			"zipcd": "20019-3402",
+			"agc_ADDR_LONGITUDE": "-76.947954",
+			"agc_ADDR_LATITUDE": "38.894591",
+			"languages": "ENG",
+			"services": "DFC,PPC,RHC"
+		}, {
+			"agcid": "82370",
+			"adr1": "828 Evarts St NE",
+			"adr2": " ",
+			"city": "Washington",
+			"email": "wsamuels@mannadc.org",
+			"fax": "202-832-1870",
+			"nme": "MANNA, INC.",
+			"phone1": "202-832-1845",
+			"statecd": "DC",
+			"weburl": "http://www.mannadc.org",
+			"zipcd": "20018-1722",
+			"agc_ADDR_LONGITUDE": "-76.993526",
+			"agc_ADDR_LATITUDE": "38.924513",
+			"languages": "ENG,SPA",
+			"services": "NDW,PPC,PPW"
+		}, {
+			"agcid": "81277",
+			"adr1": "3939 S. Capitol Street, SW",
+			"adr2": " ",
+			"city": "WASHINGTON",
+			"email": "lydiashouse2@hotmail.com",
+			"fax": "202-373-5270",
+			"nme": "LYDIA'S HOUSE",
+			"phone1": "202-373-1050",
+			"statecd": "DC",
+			"weburl": "http://www.lydiashouse@hotmail.com",
+			"zipcd": "20032-2308",
+			"agc_ADDR_LONGITUDE": "-77.008266",
+			"agc_ADDR_LATITUDE": "38.832596",
+			"languages": "ENG",
+			"services": "DFC,FHW,NDW,PPC,PPW,RHC"
+		}, {
+			"agcid": "82010",
+			"adr1": "2316 18th Street NW",
+			"adr2": " ",
+			"city": "WASHINGTON",
+			"email": "wyon@ledcmetro.org",
+			"fax": "202-540-7342",
+			"nme": "LATINO ECONOMIC DEVELOPMENT CORPORATION",
+			"phone1": "202-540-7402",
+			"statecd": "DC",
+			"weburl": "http://www.ledcmetro.org",
+			"zipcd": "20009-1815",
+			"agc_ADDR_LONGITUDE": "-77.041755",
+			"agc_ADDR_LATITUDE": "38.919821",
+			"languages": "ENG,SPA",
+			"services": "DFC,PPC,RHC"
+		}, {
+			"agcid": "80370",
+			"adr1": "7700 Little River Turnpike",
+			"adr2": "Suite 406",
+			"city": "ANNANDALE",
+			"email": "jycho@kcscgw.org",
+			"fax": "703-354-6391",
+			"nme": "KOREAN COMMUNITY SERVICE CENTER OF GREATER WASHINGTON",
+			"phone1": "703-354-6345",
+			"statecd": "VA",
+			"weburl": "www.kcscgw.org",
+			"zipcd": "22003-2406",
+			"agc_ADDR_LONGITUDE": "-77.210832",
+			"agc_ADDR_LATITUDE": "38.833003",
+			"languages": "ENG,KOR",
+			"services": "null"
+		}, {
+			"agcid": "83464",
+			"adr1": "6188 Oxon Hill Rd Ste 700",
+			"adr2": " ",
+			"city": "Oxon Hill",
+			"email": "hope@hopefinancial.org",
+			"fax": "301-567-3320",
+			"nme": "HOUSING OPTIONS & PLANNING ENTERPRISE, INC.",
+			"phone1": "301-567-3330",
+			"statecd": "MD",
+			"weburl": "http://www.hopefinancial.org",
+			"zipcd": "20745-3151",
+			"agc_ADDR_LONGITUDE": "-76.982276",
+			"agc_ADDR_LATITUDE": "38.804208",
+			"languages": "ENG,SPA",
+			"services": "DFC,FBC,FHW,NDW,PLW,PPC,PPW,RHC"
+		}, {
+			"agcid": "84490",
+			"adr1": "6188 Oxon Hill Rd",
+			"adr2": "Suite 700",
+			"city": "OXON HILL",
+			"email": "hope@hopefinancial.org",
+			"fax": "301-567-3320",
+			"nme": "HOUSING OPTIONS & PLANNING ENTERPRISE BRANCH",
+			"phone1": "301-567-3330",
+			"statecd": "MD",
+			"weburl": "http://www.hopefinancial.org",
+			"zipcd": "20745-3113",
+			"agc_ADDR_LONGITUDE": "-76.982276",
+			"agc_ADDR_LATITUDE": "38.804208",
+			"languages": "ENG,SPA",
+			"services": "DFC"
+		}, {
+			"agcid": "80216",
+			"adr1": "2410 17th St NW Ste 100",
+			"adr2": "null",
+			"city": "Washington",
+			"email": "theresahill@housingetc.org",
+			"fax": "null",
+			"nme": "HOUSING COUNSELING SERVICES, INCORPORATED",
+			"phone1": "202-667-7006",
+			"statecd": "DC",
+			"weburl": "http://www.housingetc.org",
+			"zipcd": "20009-2724",
+			"agc_ADDR_LONGITUDE": "-77.038881",
+			"agc_ADDR_LATITUDE": "38.921528",
+			"languages": "CHI,ENG,FRE,SPA",
+			"services": "DFC,DFW,FBC,FBW,FHW,HIC,HMC,NDW,PLW,PPC,PPW,RHC,RHW,RMC"
+		}, {
+			"agcid": "84561",
+			"adr1": "7426 Alban Station Blvd",
+			"adr2": " ",
+			"city": "Springfield",
+			"email": "N/A",
+			"fax": " ",
+			"nme": "HOUSING AND COMMUNITY SERVICES OF NORTHERN VA",
+			"phone1": "703-372-5440",
+			"statecd": "VA",
+			"weburl": "http://www.hcsnv.org",
+			"zipcd": "22150-2331",
+			"agc_ADDR_LONGITUDE": "-77.19879",
+			"agc_ADDR_LATITUDE": "38.734202",
+			"languages": "ENG,SPA",
+			"services": "FBC,HMC,PPC,PPW,RHC"
+		}, {
+			"agcid": "82277",
+			"adr1": "5827 Columbia Pike",
+			"adr2": "Suite 200",
+			"city": "FALLS CHURCH",
+			"email": "dvelasquez@hcva.org",
+			"fax": "703-671-2325",
+			"nme": "HISPANIC COMMITTEE OF VIRGINIA",
+			"phone1": "571-858-9281",
+			"statecd": "VA",
+			"weburl": "http://www.hcva.org",
+			"zipcd": "22041-2027",
+			"agc_ADDR_LONGITUDE": "-77.131765",
+			"agc_ADDR_LATITUDE": "38.84937",
+			"languages": "ENG,SPA",
+			"services": "DFC,FHW,NDW,PPC,PPW"
+		}, {
+			"agcid": "81147",
+			"adr1": "2901 14th St NW",
+			"adr2": " ",
+			"city": "WASHINGTON",
+			"email": "jwardrichardson@gwul.org",
+			"fax": "202-265-8929",
+			"nme": "GREATER WASHINGTON URBAN LEAGUE",
+			"phone1": "202-265-8200-242",
+			"statecd": "DC",
+			"weburl": "http://www.gwul.org",
+			"zipcd": "20009-6839",
+			"agc_ADDR_LONGITUDE": "-77.032427",
+			"agc_ADDR_LATITUDE": "38.926597",
+			"languages": "ENG,SPA",
+			"services": "DFC,FBC,NDW,PLW,PPC,PPW,RHC"
+		}, {
+			"agcid": "84049",
+			"adr1": "1460 COLUMBIA ROAD NW",
+			"adr2": "Suite C1",
+			"city": "WASHINGTON",
+			"email": "rguerricagoitia@carecendc.org",
+			"fax": "202-328-7894",
+			"nme": "CARECEN-CENTRAL AMERICAN RESOURCE CENTER",
+			"phone1": "202-328-9799-15",
+			"statecd": "DC",
+			"weburl": "www.carecendc.org",
+			"zipcd": "20009-4764",
+			"agc_ADDR_LONGITUDE": "-77.034116",
+			"agc_ADDR_LATITUDE": "38.927413",
+			"languages": "ENG,SPA",
+			"services": "DFC,NDW,PPC,RHC"
+		}, {
+			"agcid": "81307",
+			"adr1": "6066 Leesburg Pike",
+			"adr2": "Suite 100",
+			"city": "Falls Church",
+			"email": "loan.hanlon@bpsos.org",
+			"fax": "703-647-6461",
+			"nme": "BOAT PEOPLE SOS, INC",
+			"phone1": "703-647-6485",
+			"statecd": "VA",
+			"weburl": "www.bpsos.org",
+			"zipcd": "22041-2234",
+			"agc_ADDR_LONGITUDE": "-77.142303",
+			"agc_ADDR_LATITUDE": "38.85756",
+			"languages": "ENG,VIE",
+			"services": "DFC,NDW,PPC"
+		}, {
+			"agcid": "83621",
+			"adr1": "2300 9th St S Ste 300B",
+			"adr2": "null",
+			"city": "Arlington",
+			"email": "N/A",
+			"fax": "null",
+			"nme": "AHOME",
+			"phone1": "703-527-3854",
+			"statecd": "VA",
+			"weburl": "http://www.ahomeinc.org",
+			"zipcd": "22204-2345",
+			"agc_ADDR_LONGITUDE": "-77.083011",
+			"agc_ADDR_LATITUDE": "38.864772",
+			"languages": "ENG,SPA",
+			"services": "DFC,NDW,PPC,PPW"
+		}
 	]
-	
-	}
+}
