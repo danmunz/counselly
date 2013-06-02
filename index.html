@@ -113,14 +113,13 @@
 		     $('.chzn-select-lang').append('<option value="'+language.key+'">'+language.value+'</option>');
 		});
 
-
 		$(".chzn-select-svc").chosen();
 		$(".chzn-select-lang").chosen();
 		
 		//Initialize some global variables
 		var myaddress = "";
 		var circleonce = false;
-		results = [];
+		var results = [];
 		
 		//Catch changes in distance
 		$('#distance').keyup(function () {
@@ -220,7 +219,7 @@
 		function mapUpdater() {
 						
 			$('#listing').empty();
-					
+								
 			$.each(results, function(i, agency){
 			
 				$('#listing').append('<li id="' + agency.agcid + '" class="result ' + agency.services.replace(/\,/g, ' ') + ' ' + agency.languages.replace(/\,/g, ' ') + '"><span class="result-title">' + agency.nme + '</span><span class="result-address-phone">'+ agency.adr1 + ' ' + agency.adr2 + '<br/>' + agency.city + ' ' + agency.statecd + ' ' + agency.zipcd + '<br/><a href="PHONE" class="phone">'+ agency.phone1 + '</a></span><span class="result-distance">about '+calcDistance(currentpos.getPosition().lat(), currentpos.getPosition().lng(), parseFloat(agency.agc_ADDR_LATITUDE), parseFloat(agency.agc_ADDR_LONGITUDE))+' mi away | <a href="URL" target="_blank">directions</a></span>					<span class="result-flags"></span></li>');
@@ -286,8 +285,8 @@
 						lat: latlng.lat(),
 						lng: latlng.lng(),
 						animation: google.maps.Animation.DROP,
-						icon: "http://www.melinanina.com/_/rsrc/1357985119821/home/google-maps-pin-blue-hi.png?height=41&width=49"
-					});
+						icon: "http://www.dreamrealty.com/images/blue_dot_circle.png"
+					});					
 				} else {
 					alert('Something went wrong. Try again.');
 				}
