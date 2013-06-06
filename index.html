@@ -120,6 +120,7 @@
 		var myaddress = "";
 		var circleonce = false;
 		var results = [];
+		markers = [];
 		
 		//Catch changes in distance
 		$('#distance').keyup(function () {
@@ -141,17 +142,18 @@
 			var svcs = $(".chzn-select-svc").val();
 			var langs = $(".chzn-select-lang").val();
 						
-			//Clear the results array
+			//Clear the existing results array
 			results = []; 
 			
 			//Clear the map circle, if there is one already
 			if (circleonce) {
 				circle.setMap(null);
 			}
-			
+						
 			zoomscaler(Number($('#distance').val())); //Re-zoom the map to fit it, roughly
 			
 			map.setCenter(currentpos.getPosition().lat(), currentpos.getPosition().lng()); //Re-center the map around the original address marker
+			
 			circle = map.drawCircle({ //Draw a new circle representing the entered radius
 				lat: map.getCenter().lat(),
 				lng: map.getCenter().lng(),
@@ -160,6 +162,7 @@
 				fillOpacity: 0.4,
 				radius: mapradius
 			});
+			
 			circleonce = true; //Indicate that there's an existing circle now
 						
 			//Add eligible agencies to the results array
@@ -219,6 +222,11 @@
 		function mapUpdater() {
 						
 			$('#listing').empty();
+			
+			$.each(markers, function (i, marker) { //Clear the pins from the map!
+			marker.setMap(null);			
+			});
+			
 								
 			$.each(results, function(i, agency){
 			
@@ -238,7 +246,7 @@
 					}else if (agency.email.toUpperCase() != "N/A"){
 						$('#'+agency.agcid+' .result-title').wrap('<a href="mailto:'+agency.email+'">');					
 					}
-				
+
 				resultmarker = map.addMarker({ //drop a pin
 					lat: agency.agc_ADDR_LATITUDE,
 					lng: agency.agc_ADDR_LONGITUDE,
@@ -254,9 +262,8 @@
 						$('#' + agency.agcid).css('background', 'transparent');
 					}
 				});
-
+				markers.push(resultmarker);
 			});
-		
 		}
 			
 	}); //end document.ready
